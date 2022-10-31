@@ -1,8 +1,11 @@
+import 'package:dbms_project/db%20helper/mongodb.dart';
 import 'package:dbms_project/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await MongoDatabase.connect();
   runApp(const MyApp());
 }
 

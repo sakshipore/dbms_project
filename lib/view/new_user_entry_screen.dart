@@ -1,6 +1,9 @@
+import 'package:dbms_project/db%20helper/mongoDB.dart';
+import 'package:dbms_project/model/mongodb_model.dart';
 import 'package:dbms_project/view/products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mongo_dart/mongo_dart.dart' as M;
 
 class NewUserEntryScreen extends StatefulWidget {
   const NewUserEntryScreen({Key? key}) : super(key: key);
@@ -11,6 +14,38 @@ class NewUserEntryScreen extends StatefulWidget {
 
 class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
   final _formKey = GlobalKey<FormState>();
+  var addressController = new TextEditingController();
+  var fnameController = new TextEditingController();
+  var lnameController = new TextEditingController();
+  var mobNoController = new TextEditingController();
+
+  Future<void> _insertData(
+      String fname, String lname, String address, String mobNo) async {
+    var _id = M.ObjectId();
+    final data = MongoDBModel(
+      id: _id,
+      address: address,
+      fname: fname,
+      lname: lname,
+      mobNo: mobNo,
+    );
+    var result = await MongoDatabase.insert(data);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          "Inserted ID: " + _id.$oid,
+        ),
+      ),
+    );
+    _clearAll();
+  }
+
+  void _clearAll() {
+    addressController.text = "";
+    fnameController.text = "";
+    lnameController.text = "";
+    mobNoController.text = "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +58,7 @@ class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextFormField(
+                controller: fnameController,
                 decoration: InputDecoration(
                   labelText: "First Name",
                   hintText: "Enter your first name",
@@ -35,6 +71,7 @@ class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
                 }),
               ),
               TextFormField(
+                controller: lnameController,
                 decoration: InputDecoration(
                   labelText: "Last Name",
                   hintText: "Enter your Last Name",
@@ -46,19 +83,20 @@ class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
                   return null;
                 }),
               ),
+              // TextFormField(
+              //   decoration: InputDecoration(
+              //     labelText: "ID",
+              //     hintText: "Enter your ID",
+              //   ),
+              //   validator: ((value) {
+              //     if (value!.isEmpty) {
+              //       return "Please enter ID";
+              //     }
+              //     return null;
+              //   }),
+              // ),
               TextFormField(
-                decoration: InputDecoration(
-                  labelText: "ID",
-                  hintText: "Enter your ID",
-                ),
-                validator: ((value) {
-                  if (value!.isEmpty) {
-                    return "Please enter ID";
-                  }
-                  return null;
-                }),
-              ),
-              TextFormField(
+                controller: addressController,
                 decoration: InputDecoration(
                   labelText: "Address",
                   hintText: "Enter your Address",
@@ -71,6 +109,7 @@ class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
                 }),
               ),
               TextFormField(
+                controller: mobNoController,
                 decoration: InputDecoration(
                   labelText: "Moblie no",
                   hintText: "Enter your Moblie no",
@@ -88,6 +127,12 @@ class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
+                    _insertData(
+                      fnameController.text,
+                      lnameController.text,
+                      addressController.text,
+                      mobNoController.text,
+                    );
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -96,7 +141,7 @@ class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
                     );
                   },
                   child: Text(
-                    "Add Product",
+                    "Submit",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 40.sp,

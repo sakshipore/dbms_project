@@ -14,7 +14,7 @@ packages:
       name: basic_utils
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.4.0"
+    version: "3.9.4"
   boolean_selector:
     dependency: transitive
     description:
@@ -28,7 +28,7 @@ packages:
       name: bson
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "1.0.4"
   buffer:
     dependency: transitive
     description:
@@ -85,13 +85,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  decimal:
-    dependency: transitive
-    description:
-      name: decimal
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.3.0"
   fake_async:
     dependency: transitive
     description:
@@ -199,21 +192,14 @@ packages:
       name: mongo_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.0"
+    version: "0.7.4+1"
   mongo_dart_query:
     dependency: transitive
     description:
       name: mongo_dart_query
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
-  packages_extensions:
-    dependency: transitive
-    description:
-      name: packages_extensions
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.0"
+    version: "1.0.2"
   path:
     dependency: transitive
     description:
@@ -255,7 +241,7 @@ packages:
       name: rational
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "1.2.1"
   sasl_scram:
     dependency: transitive
     description:

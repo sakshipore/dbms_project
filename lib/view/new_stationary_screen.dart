@@ -8,8 +8,8 @@ class NewStationaryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Form(
+    return Scaffold(
+      body: Form(
         key: _formKey,
         child: Padding(
           padding: EdgeInsets.all(30),

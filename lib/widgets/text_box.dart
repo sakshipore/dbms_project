@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextBox extends StatelessWidget {
-   TextBox({Key? key, required this.text}) : super(key: key);
+  TextBox({Key? key, required this.text}) : super(key: key);
 
   String text;
 
@@ -12,7 +12,7 @@ class TextBox extends StatelessWidget {
       height: 136.h,
       width: 745.w,
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: Colors.grey,
       ),
       child: Padding(
         padding: EdgeInsets.only(top: 50.h),
@@ -21,7 +21,7 @@ class TextBox extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 40.sp,
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
       ),

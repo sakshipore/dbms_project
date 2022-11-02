@@ -14,37 +14,39 @@ class DisplayUserScreen extends StatefulWidget {
 class _DisplayUserScreenState extends State<DisplayUserScreen> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        // SizedBox(height: 220.h),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => NewUserEntryScreen(),
-              ),
-            );
-          },
-          child: TextBox(
-            text: 'New Entry',
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          // SizedBox(height: 220.h),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NewUserEntryScreen(),
+                ),
+              );
+            },
+            child: TextBox(
+              text: 'New Entry',
+            ),
           ),
-        ),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ShowUsersListScreen(),
-              ),
-            );
-          },
-          child: TextBox(
-            text: 'Show Users List',
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ShowUsersListScreen(),
+                ),
+              );
+            },
+            child: TextBox(
+              text: 'Show Users List',
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

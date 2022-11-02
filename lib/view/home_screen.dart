@@ -31,42 +31,46 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? CircularProgressIndicator()
-        : Column(
-            children: [
-              SizedBox(
-                height: 220.h,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DisplayUserScreen(),
-                    ),
-                  );
-                },
-                child: TextBox(
-                  text: 'Users',
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
+        : Scaffold(
+            body: Column(
+              children: [
+                SizedBox(
+                  height: 220.h,
                 ),
-              ),
-              SizedBox(
-                height: 200.h,
-              ),
-              // GestureDetector(
-              //   onTap: () {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => ProductsScreen(),
-              //       ),
-              //     );
-              //   },
-              //   child: TextBox(
-              //     text: 'Products',
-              //   ),
-              // ),
-            ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DisplayUserScreen(),
+                      ),
+                    );
+                  },
+                  child: TextBox(
+                    text: 'Users',
+                  ),
+                ),
+                SizedBox(
+                  height: 200.h,
+                ),
+                // GestureDetector(
+                //   onTap: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //         builder: (context) => ProductsScreen(),
+                //       ),
+                //     );
+                //   },
+                //   child: TextBox(
+                //     text: 'Products',
+                //   ),
+                // ),
+              ],
+            ),
           );
   }
 }

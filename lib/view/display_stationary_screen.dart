@@ -8,27 +8,29 @@ class DisplayStationaryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 220.h,
-        ),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => NewStationaryScreen(),
-              ),
-            );
-          },
-          child: TextBox(text: 'New Entry'),
-        ),
-        SizedBox(
-          height: 200.h,
-        ),
-        // TextBox(text: 'Show Users List'),
-      ],
+    return Scaffold(
+      body: Column(
+        children: [
+          SizedBox(
+            height: 220.h,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NewStationaryScreen(),
+                ),
+              );
+            },
+            child: TextBox(text: 'New Entry'),
+          ),
+          SizedBox(
+            height: 200.h,
+          ),
+          // TextBox(text: 'Show Users List'),
+        ],
+      ),
     );
   }
 }

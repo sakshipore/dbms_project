@@ -17,7 +17,7 @@ class _DisplayUserScreenState extends State<DisplayUserScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        SizedBox(height: 220.h),
+        // SizedBox(height: 220.h),
         GestureDetector(
           onTap: () {
             Navigator.push(
@@ -44,7 +44,6 @@ class _DisplayUserScreenState extends State<DisplayUserScreen> {
             text: 'Show Users List',
           ),
         ),
-        TextBox(text: "Update",),
       ],
     );
   }

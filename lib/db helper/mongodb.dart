@@ -18,7 +18,8 @@ class MongoDatabase {
       log(e.toString());
     }
   }
- static Future<String> insert(MongoDBModel data) async {
+
+  static Future<String> insert(MongoDBModel data) async {
     try {
       dataCollection = db.collection(COLL_NAME);
       var result = await dataCollection.insertOne(data.toJson());
@@ -32,5 +33,11 @@ class MongoDatabase {
       print(e.toString());
       return e.toString();
     }
+  }
+
+  static Future<List<Map<String, dynamic>>> getData() async {
+    final arrData = await dataCollection.find().toList();
+    log(arrData.toString());
+    return arrData;
   }
 }

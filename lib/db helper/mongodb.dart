@@ -5,16 +5,22 @@ import 'package:dbms_project/model/mongodb_model.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 class MongoDatabase {
-  static var db, dataCollection;
-  static connect() async {
-    db = await Db.create(MONGO_CONN_URL);
-    await db.open();
-    inspect(db);
-    dataCollection = db.collection(COLL_NAME);
-  }
-
-  static Future<String> insert(MongoDBModel data) async {
+  static late Db db;
+  static late DbCollection dataCollection;
+  connect() async {
     try {
+      db = await Db.create(MONGO_CONN_URL);
+      await db.open();
+      inspect(db);
+      dataCollection = db.collection(COLL_NAME);
+      log(dataCollection.collectionName);
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+ static Future<String> insert(MongoDBModel data) async {
+    try {
+      dataCollection = db.collection(COLL_NAME);
       var result = await dataCollection.insertOne(data.toJson());
       if (result.isSuccess) {
         return "Data inserted";

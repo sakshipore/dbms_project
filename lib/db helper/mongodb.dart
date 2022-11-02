@@ -19,6 +19,10 @@ class MongoDatabase {
     }
   }
 
+  static Future<void> delete(MongoDBModel user) async {
+    await dataCollection.remove(where.id(user.id));
+  }
+
   static Future<String> insert(MongoDBModel data) async {
     try {
       dataCollection = db.collection(COLL_NAME);

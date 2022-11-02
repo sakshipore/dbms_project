@@ -1,3 +1,4 @@
+import 'package:dbms_project/view/delete_user_screen.dart';
 import 'package:dbms_project/view/new_user_entry_screen.dart';
 import 'package:dbms_project/view/show_users_list_screen.dart';
 import 'package:dbms_project/widgets/text_box.dart';
@@ -45,6 +46,18 @@ class _DisplayUserScreenState extends State<DisplayUserScreen> {
               text: 'Show Users List',
             ),
           ),
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DeleteUserScreen(),
+                  ),
+                );
+              },
+              child: TextBox(
+                text: "Delete User",
+              )),
         ],
       ),
     );

@@ -8,7 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 
 class NewTechnicalScreen extends StatefulWidget {
-  NewTechnicalScreen({Key? key}) : super(key: key);
+  var userId;
+  NewTechnicalScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<NewTechnicalScreen> createState() => _NewTechnicalScreenState();
@@ -168,12 +169,12 @@ class _NewTechnicalScreenState extends State<NewTechnicalScreen> {
                             companyNameController.text,
                             costController.text,
                           );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    NewUserEntryScreen(id: _id)),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) =>
+                          //           NewUserEntryScreen(id: _id)),
+                          // );
                         },
                         child: Text(
                           "Add Technical Product",

@@ -8,7 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 
 class NewStationaryScreen extends StatefulWidget {
-  NewStationaryScreen({Key? key}) : super(key: key);
+  var userId;
+  NewStationaryScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<NewStationaryScreen> createState() => _NewStationaryScreenState();
@@ -100,13 +101,13 @@ class _NewStationaryScreenState extends State<NewStationaryScreen> {
                             itemController.text,
                             costController.text,
                           );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) =>
-                                  NewUserEntryScreen(id: _id)),
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: ((context) =>
+                          //         NewUserEntryScreen(id: _id)),
+                          //   ),
+                          // );
                         },
                         child: Text(
                           "Add Stationary Product",

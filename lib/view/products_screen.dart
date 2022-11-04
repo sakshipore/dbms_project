@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductsScreen extends StatefulWidget {
-  const ProductsScreen({Key? key}) : super(key: key);
+  var userId;
+  ProductsScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<ProductsScreen> createState() => _ProductsScreenState();
@@ -27,7 +28,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DisplayBookScreen(),
+                  builder: (context) => DisplayBookScreen(userId: widget.userId),
                 ),
               );
             },
@@ -41,7 +42,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DisplayStationaryScreen(),
+                  builder: (context) => DisplayStationaryScreen(userId: widget.userId),
                 ),
               );
             },
@@ -55,7 +56,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DisplayTechnicalScreen(),
+                  builder: (context) => DisplayTechnicalScreen(userId: widget.userId),
                 ),
               );
             }),

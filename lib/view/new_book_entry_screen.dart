@@ -8,7 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 
 class NewBookEntryScreen extends StatefulWidget {
-  const NewBookEntryScreen({Key? key}) : super(key: key);
+  var userId;
+  NewBookEntryScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<NewBookEntryScreen> createState() => _NewBookEntryScreenState();
@@ -151,12 +152,12 @@ class _NewBookEntryScreenState extends State<NewBookEntryScreen> {
                             editionController.text,
                             publicationController.text,
                           );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => NewUserEntryScreen(id: _id),
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => NewUserEntryScreen(id: _id),
+                          //   ),
+                          // );
                         },
                         child: Text(
                           "Add Book Product",

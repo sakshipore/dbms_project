@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dbms_project/widgets/text_box.dart';
 
 class DisplayTechnicalScreen extends StatelessWidget {
-  const DisplayTechnicalScreen({Key? key}) : super(key: key);
+  var userId;
+  DisplayTechnicalScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class DisplayTechnicalScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => NewTechnicalScreen(),
+                  builder: (context) => NewTechnicalScreen(userId: userId,),
                 ),
               );
             },

@@ -2,14 +2,14 @@ import 'dart:developer';
 
 import 'package:dbms_project/db_helper/mongoDB.dart';
 import 'package:dbms_project/model/mongodb_model.dart';
+import 'package:dbms_project/view/home_screen.dart';
 import 'package:dbms_project/view/products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 
 class NewUserEntryScreen extends StatefulWidget {
-  var id;
-  NewUserEntryScreen({Key? key, required this.id}) : super(key: key);
+  NewUserEntryScreen({Key? key}) : super(key: key);
 
   @override
   State<NewUserEntryScreen> createState() => _NewUserEntryScreenState();
@@ -22,20 +22,21 @@ class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
   TextEditingController lnameController = TextEditingController();
   TextEditingController mobNoController = TextEditingController();
   bool isLoading = false;
+  var userId;
 
   Future<void> _insertData(
       String fname, String lname, String address, String mobNo) async {
     setState(() {
       isLoading = true;
     });
-    var _id = M.ObjectId();
+    userId = M.ObjectId();
     final data = MongoDBModel(
-      id: _id,
+      id: userId,
       address: address,
       fname: fname,
       lname: lname,
       mobNo: mobNo,
-      productId: widget.id,
+      product: [],
     );
     var result = await MongoDatabase.insert(data);
     log(result);
@@ -45,7 +46,7 @@ class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          "Inserted ID: ${_id.$oid}",
+          "Inserted ID: ${userId.$oid}",
         ),
       ),
     );
@@ -67,10 +68,13 @@ class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
           : Form(
               key: _formKey,
               child: Padding(
-                padding: EdgeInsets.all(30),
+                padding: EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(
+                      height: 200.h,
+                    ),
                     TextFormField(
                       controller: fnameController,
                       decoration: InputDecoration(
@@ -147,20 +151,16 @@ class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
                             addressController.text,
                             mobNoController.text,
                           );
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => ProductsScreen(),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomeScreen(userId: userId),
+                            ),
+                          );
                         },
                         child: Text(
-                          "Add a Product",
+                          "Create user",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 40.sp,
-                            color: Colors.white,
-                          ),
                         ),
                       ),
                     ),

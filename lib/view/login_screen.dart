@@ -1,4 +1,5 @@
 import 'package:dbms_project/db_helper/mongodb.dart';
+import 'package:dbms_project/view/home_screen.dart';
 import 'package:dbms_project/view/new_user_entry_screen.dart';
 import 'package:dbms_project/view/products_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController mobNoController = TextEditingController();
   bool isLoading = true;
+  var userId;
 
   void initState() {
     super.initState();
@@ -37,70 +39,74 @@ class _LoginScreenState extends State<LoginScreen> {
                 "Connecting to Database...",
               ),
             )
-          : Column(
-              children: [
-                TextFormField(
-                  controller: mobNoController,
-                  decoration: InputDecoration(
-                    labelText: "Enter Mobile No",
-                    hintText: "Enter your Mobile No",
+          : Padding(
+              padding: EdgeInsets.all(20.h),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 200.h,
                   ),
-                  validator: ((value) {
-                    if (value!.isEmpty) {
-                      return "Please enter Mobile No";
-                    }
-                    return null;
-                  }),
-                ),
-                SizedBox(
-                  height: 100.h,
-                ),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      var userData =
-                          await MongoDatabase.checkUser(mobNoController.text);
-
-                      if (userData == null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              "User doesn't exists",
-                            ),
-                          ),
-                        );
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => NewUserEntryScreen(id: ""),
-                          ),
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              "User exists: " + userData['id'].toString(),
-                            ),
-                          ),
-                        );
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProductsScreen()),
-                        );
+                  TextFormField(
+                    controller: mobNoController,
+                    decoration: InputDecoration(
+                      labelText: "Enter Mobile No",
+                      hintText: "Enter your Mobile No",
+                    ),
+                    validator: ((value) {
+                      if (value!.isEmpty) {
+                        return "Please enter Mobile No";
                       }
-                    },
-                    child: Text(
-                      "Submit",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 40.sp,
-                        color: Colors.white,
+                      return null;
+                    }),
+                  ),
+                  SizedBox(
+                    height: 100.h,
+                  ),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        var userData =
+                            await MongoDatabase.checkUser(mobNoController.text);
+
+                        if (userData == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                "User doesn't exists",
+                              ),
+                            ),
+                          );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => NewUserEntryScreen(),
+                            ),
+                          );
+                        } else {
+                          userId = userData['id'];
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                "User exists: " + userId.toString(),
+                              ),
+                            ),
+                          );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomeScreen(userId: userId),
+                            ),
+                          );
+                        }
+                      },
+                      child: Text(
+                        "Submit",
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
     );
   }

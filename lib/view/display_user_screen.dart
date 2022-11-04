@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DisplayUserScreen extends StatefulWidget {
-  const DisplayUserScreen({Key? key}) : super(key: key);
+  var userId;
+  DisplayUserScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<DisplayUserScreen> createState() => _DisplayUserScreenState();
@@ -26,7 +27,7 @@ class _DisplayUserScreenState extends State<DisplayUserScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProductsScreen(),
+                  builder: (context) => ProductsScreen(userId: widget.userId),
                 ),
               );
             },
@@ -34,31 +35,32 @@ class _DisplayUserScreenState extends State<DisplayUserScreen> {
               text: 'New Entry',
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ShowUsersListScreen(),
-                ),
-              );
-            },
-            child: TextBox(
-              text: 'Show Users List',
-            ),
-          ),
-          GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DeleteUserScreen(),
-                  ),
-                );
-              },
-              child: TextBox(
-                text: "Delete User",
-              )),
+          // GestureDetector(
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => ShowUsersListScreen(),
+          //       ),
+          //     );
+          //   },
+          //   child: TextBox(
+          //     text: 'Show Users List',
+          //   ),
+          // ),
+          // GestureDetector(
+          //     onTap: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => DeleteUserScreen(),
+          //         ),
+          //       );
+          //     },
+          //     child: TextBox(
+          //       text: "Delete User",
+          // ),
+          // ),
         ],
       ),
     );

@@ -94,7 +94,7 @@ class ShowUsersListScreen extends StatelessWidget {
               height: 5.h,
             ),
             Text(
-              data.productId.$oid,
+              data.product.toString(),
             ),
           ],
         ),

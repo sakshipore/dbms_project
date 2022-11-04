@@ -102,7 +102,7 @@ class _DeleteUserScreenState extends State<DeleteUserScreen> {
                   height: 5.h,
                 ),
                 Text(
-                  data.productId.toString(),
+                  data.product.toString(),
                 ),
               ],
             ),

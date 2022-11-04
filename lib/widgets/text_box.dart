@@ -9,8 +9,8 @@ class TextBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 136.h,
-      width: 745.w,
+      height: 200.h,
+      width: 500.w,
       decoration: BoxDecoration(
         color: Colors.grey,
       ),
@@ -20,7 +20,7 @@ class TextBox extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 40.sp,
+            fontSize: 30.sp,
             color: Colors.black,
           ),
         ),

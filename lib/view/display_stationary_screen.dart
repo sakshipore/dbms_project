@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dbms_project/widgets/text_box.dart';
 
 class DisplayStationaryScreen extends StatelessWidget {
-  const DisplayStationaryScreen({Key? key}) : super(key: key);
+  var userId;
+  DisplayStationaryScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class DisplayStationaryScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => NewStationaryScreen(),
+                  builder: (context) => NewStationaryScreen(userId: userId,),
                 ),
               );
             },

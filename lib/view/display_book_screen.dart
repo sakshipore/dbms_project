@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dbms_project/widgets/text_box.dart';
 
 class DisplayBookScreen extends StatelessWidget {
-  const DisplayBookScreen({Key? key}) : super(key: key);
+  var userId;
+  DisplayBookScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class DisplayBookScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => NewBookEntryScreen(),
+                  builder: (context) => NewBookEntryScreen(userId: userId),
                 ),
               );
             },

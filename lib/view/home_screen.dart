@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  var userId;
+  HomeScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -15,8 +16,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool isLoading = true;
   @override
-  
-
   @override
   Widget build(BuildContext context) {
     return isLoading
@@ -34,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DisplayUserScreen(),
+                        builder: (context) => DisplayUserScreen(userId: widget.userId),
                       ),
                     );
                   },
@@ -50,12 +49,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProductsScreen(),
+                        builder: (context) => ProductsScreen(userId: widget.userId),
                       ),
                     );
                   },
                   child: TextBox(
-                    text: 'Products',
+                    text: 'See Products',
                   ),
                 ),
               ],

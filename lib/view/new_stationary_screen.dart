@@ -30,7 +30,7 @@ class _NewStationaryScreenState extends State<NewStationaryScreen> {
       item: item,
       cost: cost,
     );
-    var result = await MongoDatabaseStationary.insert(data);
+    var result = await MongoDatabaseStationary().insert(data.toJson());
     log(result);
     setState(() {
       isLoading = false;

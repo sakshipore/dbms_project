@@ -1,17 +1,22 @@
 import 'dart:developer';
 
 import 'package:dbms_project/db_helper/constants.dart';
+import 'package:dbms_project/db_helper/mongoDB.dart';
 import 'package:dbms_project/model/books.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 class MongoDatabaseBook {
   static late Db db;
   static late DbCollection bookCollection;
+  MongoDatabaseBook() {
+    db = MongoDatabase.db;
+    connect();
+  }
   connect() async {
     try {
-      db = await Db.create(MONGO_CONN_URL);
-      await db.open();
-      inspect(db);
+      // db = await Db.create(MONGO_CONN_URL);
+      // await db.open();
+      // inspect(db);
       bookCollection = db.collection(BOOK_COLL);
       log(bookCollection.collectionName);
     } catch (e) {
@@ -19,10 +24,10 @@ class MongoDatabaseBook {
     }
   }
 
-  static Future<String> insert(Book data) async {
+  Future<String> insert(Map<String, dynamic> data) async {
     try {
       bookCollection = db.collection(BOOK_COLL);
-      var result = await bookCollection.insertOne(data.toJson());
+      var result = await bookCollection.insertOne(data);
       if (result.isSuccess) {
         return "Data inserted";
       } else {

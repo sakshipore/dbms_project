@@ -36,7 +36,7 @@ class _NewBookEntryScreenState extends State<NewBookEntryScreen> {
       edition: edition,
       publication: publication,
     );
-    var result = await MongoDatabaseBook.insert(data);
+    var result = await MongoDatabaseBook().insert(data.toJson());
     log(result);
     setState(() {
       isLoading = false;

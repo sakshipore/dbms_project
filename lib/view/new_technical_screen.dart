@@ -38,7 +38,7 @@ class _NewTechnicalScreenState extends State<NewTechnicalScreen> {
       companyName: companyName,
       cost: cost,
     );
-    var result = await MongoDatabaseTechnical.insert(data);
+    var result = await MongoDatabaseTechnical().insert(data.toJson());
     log(result);
     setState(() {
       isLoading = false;

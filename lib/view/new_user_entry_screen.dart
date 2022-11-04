@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:dbms_project/db%20helper/mongoDB.dart';
+import 'package:dbms_project/db_helper/mongoDB.dart';
 import 'package:dbms_project/model/mongodb_model.dart';
 import 'package:dbms_project/view/products_screen.dart';
 import 'package:flutter/material.dart';
@@ -153,7 +153,7 @@ class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
                           // );
                         },
                         child: Text(
-                          "Submit",
+                          "Add a Product",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 40.sp,

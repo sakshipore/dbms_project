@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:dbms_project/db%20helper/constants.dart';
+import 'package:dbms_project/db_helper/constants.dart';
 import 'package:dbms_project/model/mongodb_model.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
@@ -19,7 +19,7 @@ class MongoDatabase {
     }
   }
 
-  static Future<void> delete(MongoDBModel user) async {
+  static delete(MongoDBModel user) async {
     await dataCollection.remove(where.id(user.id));
   }
 
@@ -33,8 +33,6 @@ class MongoDatabase {
         return "Something went wrong";
       }
     } catch (e) {
-      print("************************");
-      print(e.toString());
       return e.toString();
     }
   }

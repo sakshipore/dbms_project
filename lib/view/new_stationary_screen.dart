@@ -1,75 +1,118 @@
+import 'dart:developer';
+
+import 'package:dbms_project/db_helper/mongodb_stationary.dart';
+import 'package:dbms_project/model/stationary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mongo_dart/mongo_dart.dart' as M;
 
-class NewStationaryScreen extends StatelessWidget {
+class NewStationaryScreen extends StatefulWidget {
   NewStationaryScreen({Key? key}) : super(key: key);
 
+  @override
+  State<NewStationaryScreen> createState() => _NewStationaryScreenState();
+}
+
+class _NewStationaryScreenState extends State<NewStationaryScreen> {
   final _formKey = GlobalKey<FormState>();
+
+  TextEditingController itemController = TextEditingController();
+  TextEditingController costController = TextEditingController();
+  bool isLoading = false;
+
+  Future<void> _insertData(String item, String cost) async {
+    setState(() {
+      isLoading = true;
+    });
+    var _id = M.ObjectId();
+    final data = Stationary(
+      id: _id,
+      item: item,
+      cost: cost,
+    );
+    var result = await MongoDatabaseStationary.insert(data);
+    log(result);
+    setState(() {
+      isLoading = false;
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          "Inserted ID: ${_id.$oid}",
+        ),
+      ),
+    );
+    _clearAll();
+  }
+
+  void _clearAll() {
+    itemController.text = "";
+    costController.text = "";
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: Padding(
-          padding: EdgeInsets.all(30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Item",
-                  hintText: "Enter your Item",
-                ),
-                validator: ((value) {
-                  if (value!.isEmpty) {
-                    return "Please enter Item";
-                  }
-                  return null;
-                }),
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Cost",
-                  hintText: "Enter your Cost",
-                ),
-                validator: ((value) {
-                  if (value!.isEmpty) {
-                    return "Please enter Cost";
-                  }
-                  return null;
-                }),
-              ),
-              SizedBox(
-                height: 100.h,
-              ),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Data is processing',
+      body: isLoading
+          ? CircularProgressIndicator()
+          : Form(
+              key: _formKey,
+              child: Padding(
+                padding: EdgeInsets.all(30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextFormField(
+                      controller: itemController,
+                      decoration: InputDecoration(
+                        labelText: "Item",
+                        hintText: "Enter your Item",
+                      ),
+                      validator: ((value) {
+                        if (value!.isEmpty) {
+                          return "Please enter Item";
+                        }
+                        return null;
+                      }),
+                    ),
+                    TextFormField(
+                      controller: costController,
+                      decoration: InputDecoration(
+                        labelText: "Cost",
+                        hintText: "Enter your Cost",
+                      ),
+                      validator: ((value) {
+                        if (value!.isEmpty) {
+                          return "Please enter Cost";
+                        }
+                        return null;
+                      }),
+                    ),
+                    SizedBox(
+                      height: 100.h,
+                    ),
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          await _insertData(
+                            itemController.text,
+                            costController.text,
+                          );
+                        },
+                        child: Text(
+                          "Add Stationary",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 40.sp,
+                            color: Colors.white,
                           ),
                         ),
-                      );
-                    }
-                  },
-                  child: Text(
-                    "Add Stationary",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 40.sp,
-                      color: Colors.white,
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 }

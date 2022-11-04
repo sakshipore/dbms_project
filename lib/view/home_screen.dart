@@ -1,4 +1,4 @@
-import 'package:dbms_project/db%20helper/mongoDB.dart';
+import 'package:dbms_project/db_helper/mongoDB.dart';
 import 'package:dbms_project/view/display_user_screen.dart';
 import 'package:dbms_project/view/products_screen.dart';
 import 'package:dbms_project/widgets/text_box.dart';
@@ -50,25 +50,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                   child: TextBox(
-                    text: 'Users',
+                    text: 'Sell a Product',
                   ),
                 ),
                 SizedBox(
                   height: 200.h,
                 ),
-                // GestureDetector(
-                //   onTap: () {
-                //     Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //         builder: (context) => ProductsScreen(),
-                //       ),
-                //     );
-                //   },
-                //   child: TextBox(
-                //     text: 'Products',
-                //   ),
-                // ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductsScreen(),
+                      ),
+                    );
+                  },
+                  child: TextBox(
+                    text: 'Products',
+                  ),
+                ),
               ],
             ),
           );

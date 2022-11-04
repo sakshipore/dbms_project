@@ -31,10 +31,10 @@ class MongoDBModel {
       );
 
   Map<String, dynamic> toJson() => {
-    "id":id,
-    "address":address,
-    "fname":fname,
-    "lname":lname,
-    "mobNo":mobNo,
-  };
+        "id": id,
+        "address": address,
+        "fname": fname,
+        "lname": lname,
+        "mobNo": mobNo,
+      };
 }

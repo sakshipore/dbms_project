@@ -1,4 +1,3 @@
-import 'package:dbms_project/db_helper/mongoDB.dart';
 import 'package:dbms_project/view/display_user_screen.dart';
 import 'package:dbms_project/view/products_screen.dart';
 import 'package:dbms_project/widgets/text_box.dart';
@@ -14,51 +13,46 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool isLoading = true;
-  @override
   @override
   Widget build(BuildContext context) {
-    return isLoading
-        ? Center(
-            child: CircularProgressIndicator(),
-          )
-        : Scaffold(
-            body: Column(
-              children: [
-                SizedBox(
-                  height: 220.h,
+    return Scaffold(
+      body: Column(
+        children: [
+          SizedBox(
+            height: 220.h,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      DisplayUserScreen(userId: widget.userId),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DisplayUserScreen(userId: widget.userId),
-                      ),
-                    );
-                  },
-                  child: TextBox(
-                    text: 'Sell a Product',
-                  ),
-                ),
-                SizedBox(
-                  height: 200.h,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductsScreen(userId: widget.userId),
-                      ),
-                    );
-                  },
-                  child: TextBox(
-                    text: 'See Products',
-                  ),
-                ),
-              ],
+              );
+            },
+            child: TextBox(
+              text: 'Sell a Product',
             ),
-          );
+          ),
+          SizedBox(
+            height: 200.h,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProductsScreen(userId: widget.userId),
+                ),
+              );
+            },
+            child: TextBox(
+              text: 'See Products',
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

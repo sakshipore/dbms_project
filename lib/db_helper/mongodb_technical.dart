@@ -1,8 +1,7 @@
 import 'dart:developer';
 
 import 'package:dbms_project/db_helper/constants.dart';
-import 'package:dbms_project/db_helper/mongoDB.dart';
-import 'package:dbms_project/model/technical.dart';
+import 'package:dbms_project/db_helper/mongodb.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 class MongoDatabaseTechnical {

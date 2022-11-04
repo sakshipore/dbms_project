@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:dbms_project/db_helper/mongoDB.dart';
+import 'package:dbms_project/db_helper/mongodb.dart';
 import 'package:dbms_project/model/mongodb_model.dart';
 import 'package:dbms_project/view/home_screen.dart';
 import 'package:dbms_project/view/products_screen.dart';

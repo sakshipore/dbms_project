@@ -13,6 +13,7 @@ class Book {
   String cost;
   String edition;
   String publication;
+  
 
   Book({
     required this.id,
@@ -21,6 +22,7 @@ class Book {
     required this.cost,
     required this.edition,
     required this.publication,
+    
   });
 
   factory Book.fromJson(Map<String, dynamic> json) => Book(
@@ -30,6 +32,7 @@ class Book {
         cost: json["cost"],
         edition: json["edition"],
         publication: json["publication"],
+        
       );
 
   Map<String, dynamic> toJson() => {
@@ -39,5 +42,6 @@ class Book {
         "cost": cost,
         "edition": edition,
         "publication": publication,
+        
       };
 }

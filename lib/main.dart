@@ -1,5 +1,6 @@
 import 'package:dbms_project/db_helper/mongodb.dart';
 import 'package:dbms_project/view/home_screen.dart';
+import 'package:dbms_project/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       builder: ((context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: HomeScreen(),
+          home: LoginScreen(),
         );
       }),
     );

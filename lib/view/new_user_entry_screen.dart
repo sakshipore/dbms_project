@@ -8,7 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 
 class NewUserEntryScreen extends StatefulWidget {
-  const NewUserEntryScreen({Key? key}) : super(key: key);
+  var id;
+  NewUserEntryScreen({Key? key, required this.id}) : super(key: key);
 
   @override
   State<NewUserEntryScreen> createState() => _NewUserEntryScreenState();
@@ -34,6 +35,7 @@ class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
       fname: fname,
       lname: lname,
       mobNo: mobNo,
+      productId: widget.id,
     );
     var result = await MongoDatabase.insert(data);
     log(result);

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dbms_project/db_helper/mongodb_technical.dart';
 import 'package:dbms_project/model/technical.dart';
+import 'package:dbms_project/view/new_user_entry_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
@@ -22,13 +23,14 @@ class _NewTechnicalScreenState extends State<NewTechnicalScreen> {
   TextEditingController companyNameController = TextEditingController();
   TextEditingController costController = TextEditingController();
   bool isLoading = false;
+  var _id;
 
   Future<void> _insertData(String name, String modelNo, String specification,
       String billNo, String companyName, String cost) async {
     setState(() {
       isLoading = true;
     });
-    var _id = M.ObjectId();
+    _id = M.ObjectId();
     final data = Technical(
       id: _id,
       name: name,
@@ -166,9 +168,15 @@ class _NewTechnicalScreenState extends State<NewTechnicalScreen> {
                             companyNameController.text,
                             costController.text,
                           );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    NewUserEntryScreen(id: _id)),
+                          );
                         },
                         child: Text(
-                          "Add Technical",
+                          "Add Technical Product",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 40.sp,

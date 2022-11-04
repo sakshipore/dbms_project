@@ -42,4 +42,15 @@ class MongoDatabase {
     log(arrData.toString());
     return arrData;
   }
+
+  static Future<Map<String, dynamic>?> checkUser(String mobNo) async {
+    Map<String, dynamic>? userData;
+    userData = await dataCollection.findOne({'mobNo': mobNo});
+    if (userData == null) {
+      return null;
+    } else {
+      log(userData.toString());
+      return userData;
+    }
+  }
 }

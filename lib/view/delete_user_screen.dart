@@ -98,6 +98,12 @@ class _DeleteUserScreenState extends State<DeleteUserScreen> {
                 Text(
                   data.mobNo,
                 ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Text(
+                  data.productId.toString(),
+                ),
               ],
             ),
             IconButton(

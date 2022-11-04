@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dbms_project/db_helper/mongodb_book.dart';
 import 'package:dbms_project/model/books.dart';
+import 'package:dbms_project/view/new_user_entry_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
@@ -21,13 +22,14 @@ class _NewBookEntryScreenState extends State<NewBookEntryScreen> {
   TextEditingController editionController = TextEditingController();
   TextEditingController publicationController = TextEditingController();
   bool isLoading = false;
+  var _id;
 
   Future<void> _insertData(String name, String author, String cost,
       String edition, String publication) async {
     setState(() {
       isLoading = true;
     });
-    var _id = M.ObjectId();
+    _id = M.ObjectId();
     final data = Book(
       id: _id,
       name: name,
@@ -149,9 +151,15 @@ class _NewBookEntryScreenState extends State<NewBookEntryScreen> {
                             editionController.text,
                             publicationController.text,
                           );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => NewUserEntryScreen(id: _id),
+                            ),
+                          );
                         },
                         child: Text(
-                          "Submit",
+                          "Add Book Product",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 40.sp,

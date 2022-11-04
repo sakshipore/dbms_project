@@ -90,6 +90,12 @@ class ShowUsersListScreen extends StatelessWidget {
             Text(
               data.mobNo,
             ),
+            SizedBox(
+              height: 5.h,
+            ),
+            Text(
+              data.productId.$oid,
+            ),
           ],
         ),
       ),

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dbms_project/db_helper/mongodb_stationary.dart';
 import 'package:dbms_project/model/stationary.dart';
+import 'package:dbms_project/view/new_user_entry_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
@@ -19,12 +20,13 @@ class _NewStationaryScreenState extends State<NewStationaryScreen> {
   TextEditingController itemController = TextEditingController();
   TextEditingController costController = TextEditingController();
   bool isLoading = false;
+  var _id;
 
   Future<void> _insertData(String item, String cost) async {
     setState(() {
       isLoading = true;
     });
-    var _id = M.ObjectId();
+    _id = M.ObjectId();
     final data = Stationary(
       id: _id,
       item: item,
@@ -98,9 +100,16 @@ class _NewStationaryScreenState extends State<NewStationaryScreen> {
                             itemController.text,
                             costController.text,
                           );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) =>
+                                  NewUserEntryScreen(id: _id)),
+                            ),
+                          );
                         },
                         child: Text(
-                          "Add Stationary",
+                          "Add Stationary Product",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 40.sp,

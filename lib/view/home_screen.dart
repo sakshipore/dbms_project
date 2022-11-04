@@ -15,18 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool isLoading = true;
   @override
-  void initState() {
-    super.initState();
-    connectToDB();
-  }
-
-  void connectToDB() async {
-    MongoDatabase db = MongoDatabase();
-    await db.connect();
-    setState(() {
-      isLoading = false;
-    });
-  }
+  
 
   @override
   Widget build(BuildContext context) {

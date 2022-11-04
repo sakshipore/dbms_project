@@ -1,5 +1,6 @@
 import 'package:dbms_project/view/delete_user_screen.dart';
 import 'package:dbms_project/view/new_user_entry_screen.dart';
+import 'package:dbms_project/view/products_screen.dart';
 import 'package:dbms_project/view/show_users_list_screen.dart';
 import 'package:dbms_project/widgets/text_box.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _DisplayUserScreenState extends State<DisplayUserScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => NewUserEntryScreen(),
+                  builder: (context) => ProductsScreen(),
                 ),
               );
             },

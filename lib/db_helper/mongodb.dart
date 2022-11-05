@@ -7,7 +7,7 @@ import 'package:mongo_dart/mongo_dart.dart';
 class MongoDatabase {
   static late Db db;
   static late DbCollection usersCollection;
- 
+
   connect() async {
     try {
       db = await Db.create(MONGO_CONN_URL);
@@ -53,5 +53,11 @@ class MongoDatabase {
       log(userData.toString());
       return userData;
     }
+  }
+
+  static Future<Map<String, dynamic>> update(var userId, var productId) async {
+    var result = await usersCollection.update(
+        where.eq('id', userId), modify.set('product', productId));
+    return result;
   }
 }

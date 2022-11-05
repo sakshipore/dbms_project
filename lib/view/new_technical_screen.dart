@@ -179,10 +179,7 @@ class _NewTechnicalScreenState extends State<NewTechnicalScreen> {
                         child: Text(
                           "Add Technical Product",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 40.sp,
-                            color: Colors.white,
-                          ),
+                          
                         ),
                       ),
                     ),

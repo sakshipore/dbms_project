@@ -55,6 +55,17 @@ class MongoDatabase {
     }
   }
 
+  static Future<Map<String, dynamic>?> fetchUserData(var userId) async {
+    Map<String, dynamic>? userData;
+    userData = await usersCollection.findOne({'id': userId});
+    if (userData == null) {
+      return null;
+    } else {
+      log(userData.toString());
+      return userData;
+    }
+  }
+
   static Future<Map<String, dynamic>> update(var userId, var productId) async {
     var result = await usersCollection.update(
         where.eq('id', userId), modify.set('product', productId));

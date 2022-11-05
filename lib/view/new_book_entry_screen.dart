@@ -30,6 +30,7 @@ class _NewBookEntryScreenState extends State<NewBookEntryScreen> {
     setState(() {
       isLoading = true;
     });
+    var userData = MongoDatabase.fetchUserData(widget.userId);
     var result = await MongoDatabase.update(widget.userId, productId);
     log(result.toString());
     setState(() {
@@ -38,7 +39,7 @@ class _NewBookEntryScreenState extends State<NewBookEntryScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          "Inserted ID: $productId",
+          "Updated ID: $productId",
         ),
       ),
     );

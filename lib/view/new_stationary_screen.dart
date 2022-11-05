@@ -112,10 +112,7 @@ class _NewStationaryScreenState extends State<NewStationaryScreen> {
                         child: Text(
                           "Add Stationary Product",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 40.sp,
-                            color: Colors.white,
-                          ),
+                          
                         ),
                       ),
                     ),

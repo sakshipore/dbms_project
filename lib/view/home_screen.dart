@@ -14,7 +14,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool isLoading = true;
+  bool isLoading = false;
+
+  
+
   @override
   @override
   Widget build(BuildContext context) {

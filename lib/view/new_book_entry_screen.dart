@@ -6,6 +6,7 @@ import 'package:dbms_project/view/new_user_entry_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
+import 'package:dbms_project/db_helper/mongodb.dart';
 
 class NewBookEntryScreen extends StatefulWidget {
   var userId;
@@ -24,6 +25,25 @@ class _NewBookEntryScreenState extends State<NewBookEntryScreen> {
   TextEditingController publicationController = TextEditingController();
   bool isLoading = false;
   var _id;
+
+  Future<void> _updateData(var productId) async {
+    setState(() {
+      isLoading = true;
+    });
+    var result = await MongoDatabase.update(widget.userId, productId);
+    log(result.toString());
+    setState(() {
+      isLoading = false;
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          "Inserted ID: $productId",
+        ),
+      ),
+    );
+    _clearAll();
+  }
 
   Future<void> _insertData(String name, String author, String cost,
       String edition, String publication) async {
@@ -152,6 +172,7 @@ class _NewBookEntryScreenState extends State<NewBookEntryScreen> {
                             editionController.text,
                             publicationController.text,
                           );
+                          await _updateData(_id);
                           // Navigator.push(
                           //   context,
                           //   MaterialPageRoute(
@@ -162,10 +183,6 @@ class _NewBookEntryScreenState extends State<NewBookEntryScreen> {
                         child: Text(
                           "Add Book Product",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 40.sp,
-                            color: Colors.white,
-                          ),
                         ),
                       ),
                     ),

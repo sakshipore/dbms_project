@@ -66,9 +66,9 @@ class MongoDatabase {
     }
   }
 
-  static Future<Map<String, dynamic>> update(var userId, var productId) async {
+  static Future<Map<String, dynamic>> update(var userId,List productIds) async {
     var result = await usersCollection.update(
-        where.eq('id', userId), modify.set('product', productId));
+        where.eq('id', userId), modify.set('product', productIds));
     return result;
   }
 }

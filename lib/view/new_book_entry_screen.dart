@@ -30,8 +30,12 @@ class _NewBookEntryScreenState extends State<NewBookEntryScreen> {
     setState(() {
       isLoading = true;
     });
-    var userData = MongoDatabase.fetchUserData(widget.userId);
-    var result = await MongoDatabase.update(widget.userId, productId);
+    Map<String, dynamic>? userData =
+        await MongoDatabase.fetchUserData(widget.userId);
+    if (userData == null) return;
+    List productIds = userData["product"];
+    productIds.add(productId);
+    var result = await MongoDatabase.update(widget.userId, productIds);
     log(result.toString());
     setState(() {
       isLoading = false;

@@ -9,13 +9,13 @@ class TextBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200.h,
-      width: 500.w,
+      height: 100.h,
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: Colors.grey,
       ),
       child: Padding(
-        padding: EdgeInsets.only(top: 50.h),
+        padding: EdgeInsets.only(top: 30.h),
         child: Text(
           text,
           textAlign: TextAlign.center,

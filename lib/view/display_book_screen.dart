@@ -1,4 +1,5 @@
 import 'package:dbms_project/view/new_book_entry_screen.dart';
+import 'package:dbms_project/view/show_books_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dbms_project/widgets/text_box.dart';
@@ -29,7 +30,17 @@ class DisplayBookScreen extends StatelessWidget {
           SizedBox(
             height: 200.h,
           ),
-          // TextBox(text: 'Show Users List'),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ShowBooksList(),
+                ),
+              );
+            },
+            child: TextBox(text: 'Show Books List'),
+          ),
         ],
       ),
     );

@@ -37,7 +37,7 @@ class MongoDatabaseBook {
     }
   }
 
-  static Future<List<Map<String, dynamic>>> getData() async {
+  Future<List<Map<String, dynamic>>> getData() async {
     final arrData = await bookCollection.find().toList();
     log(arrData.toString());
     return arrData;

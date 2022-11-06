@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dbms_project/db_helper/mongodb_book.dart';
 import 'package:dbms_project/model/books.dart';
+import 'package:dbms_project/view/home_screen.dart';
 import 'package:dbms_project/view/new_user_entry_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -178,12 +179,13 @@ class _NewBookEntryScreenState extends State<NewBookEntryScreen> {
                             publicationController.text,
                           );
                           await _updateData(_id);
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => NewUserEntryScreen(id: _id),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  HomeScreen(userId: widget.userId),
+                            ),
+                          );
                         },
                         child: Text(
                           "Add Book Product",

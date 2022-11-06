@@ -80,7 +80,9 @@ class _NewStationaryScreenState extends State<NewStationaryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: isLoading
-          ? CircularProgressIndicator()
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
           : Form(
               key: _formKey,
               child: Padding(
@@ -88,6 +90,23 @@ class _NewStationaryScreenState extends State<NewStationaryScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(
+                      height: 100.h,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 10.w),
+                      child: Text(
+                        "New Stationary Item Entry",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 30.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50.h,
+                    ),
                     TextFormField(
                       controller: itemController,
                       decoration: InputDecoration(

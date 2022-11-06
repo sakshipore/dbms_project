@@ -34,10 +34,23 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: isLoading
-          ? Center(
-              child: Text(
-                "Connecting to Database...",
-              ),
+          ? Column(
+              children: [
+                SizedBox(
+                  height: 400.h,
+                ),
+                Center(
+                  child: CircularProgressIndicator(),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Center(
+                  child: Text(
+                    "Connecting to Database...",
+                  ),
+                ),
+              ],
             )
           : Padding(
               padding: EdgeInsets.all(20.h),
@@ -45,6 +58,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   SizedBox(
                     height: 200.h,
+                  ),
+                  Text(
+                    "Login Screen",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 30.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 100.h,
                   ),
                   TextFormField(
                     controller: mobNoController,
@@ -60,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     }),
                   ),
                   SizedBox(
-                    height: 100.h,
+                    height: 50.h,
                   ),
                   Center(
                     child: ElevatedButton(
@@ -100,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                       },
                       child: Text(
-                        "Submit",
+                        "Log In",
                         textAlign: TextAlign.center,
                       ),
                     ),

@@ -1,4 +1,4 @@
-import 'package:dbms_project/view/display_user_screen.dart';
+import 'package:dbms_project/view/display_products_screen.dart';
 import 'package:dbms_project/view/products_screen.dart';
 import 'package:dbms_project/widgets/text_box.dart';
 import 'package:flutter/material.dart';
@@ -21,24 +21,18 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           SizedBox(
-            height: 220.h,
+            height: 100.h,
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      DisplayUserScreen(userId: widget.userId),
-                ),
-              );
-            },
-            child: TextBox(
-              text: 'Sell a Product',
+          Text(
+            "Home Screen",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 30.sp,
+              fontWeight: FontWeight.w500,
             ),
           ),
           SizedBox(
-            height: 200.h,
+            height: 100.h,
           ),
           GestureDetector(
             onTap: () {
@@ -50,7 +44,23 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
             child: TextBox(
-              text: 'See Products',
+              text: 'Sell a Product',
+            ),
+          ),
+          SizedBox(
+            height: 100.h,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DisplayProductsScreen(userId: widget.userId),
+                ),
+              );
+            },
+            child: TextBox(
+              text: 'Buy a Product',
             ),
           ),
         ],

@@ -1,19 +1,19 @@
-import 'package:dbms_project/view/new_book_entry_screen.dart';
-import 'package:dbms_project/view/new_stationary_screen.dart';
-import 'package:dbms_project/view/new_technical_screen.dart';
-import 'package:dbms_project/widgets/text_box.dart';
+import 'package:dbms_project/view/show_books_list.dart';
+import 'package:dbms_project/view/show_stationary_list.dart';
+import 'package:dbms_project/view/show_technical_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:dbms_project/widgets/text_box.dart';
 
-class ProductsScreen extends StatefulWidget {
+class DisplayProductsScreen extends StatefulWidget {
   var userId;
-  ProductsScreen({Key? key, required this.userId}) : super(key: key);
+  DisplayProductsScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
-  State<ProductsScreen> createState() => _ProductsScreenState();
+  State<DisplayProductsScreen> createState() => _DisplayProductsScreenState();
 }
 
-class _ProductsScreenState extends State<ProductsScreen> {
+class _DisplayProductsScreenState extends State<DisplayProductsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,26 +21,14 @@ class _ProductsScreenState extends State<ProductsScreen> {
         child: Column(
           children: [
             SizedBox(
-              height: 100.h,
-            ),
-            Text(
-              "Products",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30.sp,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            SizedBox(
-              height: 100.h,
+              height: 220.h,
             ),
             GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        NewBookEntryScreen(userId: widget.userId),
+                    builder: (context) => ShowBooksList(),
                   ),
                 );
               },
@@ -54,8 +42,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        NewStationaryScreen(userId: widget.userId),
+                    builder: (context) => ShowStationaryList(),
                   ),
                 );
               },
@@ -69,8 +56,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        NewTechnicalScreen(userId: widget.userId),
+                    builder: (context) => ShowTechnicalList(),
                   ),
                 );
               }),

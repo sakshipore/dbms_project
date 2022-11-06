@@ -64,6 +64,17 @@ class _DisplayDataState extends State<DisplayData> {
           height: 100.h,
         ),
         Text(
+          "Seller Details",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 30.sp,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        SizedBox(
+          height: 50.h,
+        ),
+        Text(
           "User id: " + data.id.$oid,
         ),
         SizedBox(

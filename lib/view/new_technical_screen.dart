@@ -6,6 +6,7 @@ import 'package:dbms_project/view/new_user_entry_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
+import 'package:dbms_project/db_helper/mongodb.dart';
 
 class NewTechnicalScreen extends StatefulWidget {
   var userId;
@@ -25,6 +26,30 @@ class _NewTechnicalScreenState extends State<NewTechnicalScreen> {
   TextEditingController costController = TextEditingController();
   bool isLoading = false;
   var _id;
+
+  Future<void> _updateData(var productId) async {
+    setState(() {
+      isLoading = true;
+    });
+    Map<String, dynamic>? userData =
+        await MongoDatabase.fetchUserData(widget.userId);
+    if (userData == null) return;
+    List productIds = userData["product"];
+    productIds.add(productId);
+    var result = await MongoDatabase.update(widget.userId, productIds);
+    log(result.toString());
+    setState(() {
+      isLoading = false;
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          "Updated ID: $productId",
+        ),
+      ),
+    );
+    _clearAll();
+  }
 
   Future<void> _insertData(String name, String modelNo, String specification,
       String billNo, String companyName, String cost) async {
@@ -169,6 +194,7 @@ class _NewTechnicalScreenState extends State<NewTechnicalScreen> {
                             companyNameController.text,
                             costController.text,
                           );
+                          await _updateData(_id);
                           // Navigator.push(
                           //   context,
                           //   MaterialPageRoute(
@@ -179,7 +205,6 @@ class _NewTechnicalScreenState extends State<NewTechnicalScreen> {
                         child: Text(
                           "Add Technical Product",
                           textAlign: TextAlign.center,
-                          
                         ),
                       ),
                     ),

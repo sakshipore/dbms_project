@@ -57,41 +57,37 @@ class _DisplayDataState extends State<DisplayData> {
   }
 
   Widget displayData(MongoDBModel data) {
-    return Container(
-      child: Column(
-        children: [
-          Text(
-            data.id.$oid,
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            data.fname,
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            data.lname,
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            data.address,
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            data.mobNo,
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 100.h,
+        ),
+        Text(
+          "User id: " + data.id.$oid,
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
+        Text(
+          "Name: " + data.fname + " " + data.lname,
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
+        Text(
+          "Address: " + data.address,
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
+        Text(
+          "Mobile no.: " + data.mobNo,
+        ),
+        SizedBox(
+          height: 10.h,
+        ),
+      ],
     );
   }
 }

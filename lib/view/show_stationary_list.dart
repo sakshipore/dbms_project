@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dbms_project/view/display_data.dart';
 import 'package:flutter/material.dart';
 import 'package:dbms_project/db_helper/mongodb_stationary.dart';
 import 'package:dbms_project/model/stationary.dart';
@@ -34,9 +35,21 @@ class _ShowStationaryListState extends State<ShowStationaryList> {
                   return ListView.builder(
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
-                      return displayCard(
-                        Stationary.fromJson(
-                          snapshot.data[index],
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DisplayData(
+                                userId: snapshot.data[index]["userId"],
+                              ),
+                            ),
+                          );
+                        },
+                        child: displayCard(
+                          Stationary.fromJson(
+                            snapshot.data[index],
+                          ),
                         ),
                       );
                     },

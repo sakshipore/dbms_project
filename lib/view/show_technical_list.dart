@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dbms_project/model/technical.dart';
+import 'package:dbms_project/view/display_data.dart';
 import 'package:flutter/material.dart';
 import 'package:dbms_project/db_helper/mongodb_technical.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,9 +35,21 @@ class _ShowTechnicalListState extends State<ShowTechnicalList> {
                   return ListView.builder(
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
-                      return displayCard(
-                        Technical.fromJson(
-                          snapshot.data[index],
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DisplayData(
+                                userId: snapshot.data[index]["userId"],
+                              ),
+                            ),
+                          );
+                        },
+                        child: displayCard(
+                          Technical.fromJson(
+                            snapshot.data[index],
+                          ),
                         ),
                       );
                     },

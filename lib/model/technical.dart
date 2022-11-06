@@ -15,6 +15,7 @@ class Technical {
   String billNo;
   String companyName;
   String cost;
+  ObjectId userId;
 
   Technical({
     required this.id,
@@ -24,6 +25,7 @@ class Technical {
     required this.billNo,
     required this.companyName,
     required this.cost,
+    required this.userId,
   });
 
   factory Technical.fromJson(Map<String, dynamic> json) => Technical(
@@ -34,6 +36,7 @@ class Technical {
         billNo: json["billNo"],
         companyName: json["companyName"],
         cost: json["cost"],
+        userId: json["userId"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,5 +47,6 @@ class Technical {
         "billNo": billNo,
         "companyName": companyName,
         "cost": cost,
+        "userId":userId,
       };
 }

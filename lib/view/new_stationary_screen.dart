@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dbms_project/db_helper/mongodb_stationary.dart';
 import 'package:dbms_project/model/stationary.dart';
+import 'package:dbms_project/view/home_screen.dart';
 import 'package:dbms_project/view/new_user_entry_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,11 +54,8 @@ class _NewStationaryScreenState extends State<NewStationaryScreen> {
       isLoading = true;
     });
     _id = M.ObjectId();
-    final data = Stationary(
-      id: _id,
-      item: item,
-      cost: cost,
-    );
+    final data =
+        Stationary(id: _id, item: item, cost: cost, userId: widget.userId);
     var result = await MongoDatabaseStationary().insert(data.toJson());
     log(result);
     setState(() {
@@ -127,13 +125,13 @@ class _NewStationaryScreenState extends State<NewStationaryScreen> {
                             costController.text,
                           );
                           await _updateData(_id);
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: ((context) =>
-                          //         NewUserEntryScreen(id: _id)),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) =>
+                                  HomeScreen(userId: widget.userId)),
+                            ),
+                          );
                         },
                         child: Text(
                           "Add Stationary Product",

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dbms_project/db_helper/mongodb_technical.dart';
 import 'package:dbms_project/model/technical.dart';
+import 'package:dbms_project/view/home_screen.dart';
 import 'package:dbms_project/view/new_user_entry_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -65,6 +66,7 @@ class _NewTechnicalScreenState extends State<NewTechnicalScreen> {
       billNo: billNo,
       companyName: companyName,
       cost: cost,
+      userId: widget.userId,
     );
     var result = await MongoDatabaseTechnical().insert(data.toJson());
     log(result);
@@ -195,12 +197,12 @@ class _NewTechnicalScreenState extends State<NewTechnicalScreen> {
                             costController.text,
                           );
                           await _updateData(_id);
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) =>
-                          //           NewUserEntryScreen(id: _id)),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    HomeScreen(userId: widget.userId)),
+                          );
                         },
                         child: Text(
                           "Add Technical Product",

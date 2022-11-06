@@ -64,6 +64,7 @@ class _NewBookEntryScreenState extends State<NewBookEntryScreen> {
       cost: cost,
       edition: edition,
       publication: publication,
+      userId: widget.userId,
     );
     var result = await MongoDatabaseBook().insert(data.toJson());
     log(result);

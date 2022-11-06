@@ -166,7 +166,7 @@ class _NewUserEntryScreenState extends State<NewUserEntryScreen> {
                               addressController.text,
                               mobNoController.text,
                             );
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>

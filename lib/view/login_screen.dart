@@ -52,84 +52,87 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             )
-          : Padding(
-              padding: EdgeInsets.all(20.h),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 200.h,
-                  ),
-                  Text(
-                    "Login Screen",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 30.sp,
-                      fontWeight: FontWeight.w500,
+          : SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(20.h),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 200.h,
                     ),
-                  ),
-                  SizedBox(
-                    height: 100.h,
-                  ),
-                  TextFormField(
-                    controller: mobNoController,
-                    decoration: InputDecoration(
-                      labelText: "Enter Mobile No",
-                      hintText: "Enter your Mobile No",
-                    ),
-                    validator: ((value) {
-                      if (value!.isEmpty) {
-                        return "Please enter Mobile No";
-                      }
-                      return null;
-                    }),
-                  ),
-                  SizedBox(
-                    height: 50.h,
-                  ),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        var userData =
-                            await MongoDatabase.checkUser(mobNoController.text);
-
-                        if (userData == null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                "User doesn't exists",
-                              ),
-                            ),
-                          );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => NewUserEntryScreen(),
-                            ),
-                          );
-                        } else {
-                          userId = userData['id'];
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                "User exists: " + userId.toString(),
-                              ),
-                            ),
-                          );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomeScreen(userId: userId),
-                            ),
-                          );
-                        }
-                      },
-                      child: Text(
-                        "Log In",
-                        textAlign: TextAlign.center,
+                    Text(
+                      "Login Screen",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 30.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 100.h,
+                    ),
+                    TextFormField(
+                      controller: mobNoController,
+                      decoration: InputDecoration(
+                        labelText: "Enter Mobile No",
+                        hintText: "Enter your Mobile No",
+                      ),
+                      validator: ((value) {
+                        if (value!.isEmpty) {
+                          return "Please enter Mobile No";
+                        }
+                        return null;
+                      }),
+                    ),
+                    SizedBox(
+                      height: 50.h,
+                    ),
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          var userData = await MongoDatabase.checkUser(
+                              mobNoController.text);
+
+                          if (userData == null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  "User doesn't exists",
+                                ),
+                              ),
+                            );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => NewUserEntryScreen(),
+                              ),
+                            );
+                          } else {
+                            userId = userData['id'];
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  "User exists: " + userId.toString(),
+                                ),
+                              ),
+                            );
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    HomeScreen(userId: userId),
+                              ),
+                            );
+                          }
+                        },
+                        child: Text(
+                          "Log In",
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
     );

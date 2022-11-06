@@ -20,58 +20,77 @@ class _ShowBooksListState extends State<ShowBooksList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: FutureBuilder<List<Map<String, dynamic>>>(
-            future: MongoDatabaseBook().getData(),
-            builder: (context, AsyncSnapshot snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
-                if (snapshot.hasData) {
-                  int totalData = snapshot.data.length;
-                  log("Total Data: $totalData");
-                  log(snapshot.data.toString());
-                  return ListView.builder(
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DisplayData(
-                                userId: snapshot.data[index]["userId"],
-                              ),
-                            ),
-                          );
-                        },
-                        child: displayCard(
-                          Book.fromJson(
-                            snapshot.data[index],
-                          ),
-                        ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 100.h,
+                ),
+                Text(
+                  "Products Details",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 30.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                FutureBuilder<List<Map<String, dynamic>>>(
+                  future: MongoDatabaseBook().getData(),
+                  builder: (context, AsyncSnapshot snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(
+                        child: CircularProgressIndicator(),
                       );
-                    },
-                  );
-                } else if (snapshot.hasError) {
-                  return Center(
-                    child: Text(
-                      snapshot.error.toString(),
-                    ),
-                  );
-                } else {
-                  return Center(
-                    child: Text(
-                      "No Data Available",
-                    ),
-                  );
-                }
-              }
-            },
+                    } else {
+                      if (snapshot.hasData) {
+                        int totalData = snapshot.data.length;
+                        log("Total Data: $totalData");
+                        log(snapshot.data.toString());
+                        return ListView.builder(
+                          itemCount: snapshot.data.length,
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DisplayData(
+                                      userId: snapshot.data[index]["userId"],
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: displayCard(
+                                Book.fromJson(
+                                  snapshot.data[index],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      } else if (snapshot.hasError) {
+                        return Center(
+                          child: Text(
+                            snapshot.error.toString(),
+                          ),
+                        );
+                      } else {
+                        return Center(
+                          child: Text(
+                            "No Data Available",
+                          ),
+                        );
+                      }
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

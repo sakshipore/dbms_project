@@ -2,12 +2,13 @@ import 'dart:developer';
 
 import 'package:dbms_project/db_helper/mongodb_book.dart';
 import 'package:dbms_project/model/books.dart';
+import 'package:dbms_project/view/display_data.dart';
 import 'package:flutter/material.dart';
 import 'package:dbms_project/db_helper/mongodb.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ShowBooksList extends StatefulWidget {
-  const ShowBooksList({Key? key}) : super(key: key);
+  ShowBooksList({Key? key,}) : super(key: key);
 
   @override
   State<ShowBooksList> createState() => _ShowBooksListState();
@@ -35,9 +36,21 @@ class _ShowBooksListState extends State<ShowBooksList> {
                   return ListView.builder(
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
-                      return displayCard(
-                        Book.fromJson(
-                          snapshot.data[index],
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DisplayData(
+                                userId: snapshot.data[index].userId,
+                              ),
+                            ),
+                          );
+                        },
+                        child: displayCard(
+                          Book.fromJson(
+                            snapshot.data[index],
+                          ),
                         ),
                       );
                     },

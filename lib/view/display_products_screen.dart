@@ -21,7 +21,18 @@ class _DisplayProductsScreenState extends State<DisplayProductsScreen> {
         child: Column(
           children: [
             SizedBox(
-              height: 220.h,
+              height: 100.h,
+            ),
+            Text(
+              "Products",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 30.sp,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(
+              height: 100.h,
             ),
             GestureDetector(
               onTap: () {

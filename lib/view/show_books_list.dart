@@ -8,7 +8,9 @@ import 'package:dbms_project/db_helper/mongodb.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ShowBooksList extends StatefulWidget {
-  ShowBooksList({Key? key,}) : super(key: key);
+  ShowBooksList({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<ShowBooksList> createState() => _ShowBooksListState();
@@ -21,7 +23,7 @@ class _ShowBooksListState extends State<ShowBooksList> {
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(10),
-          child: FutureBuilder(
+          child: FutureBuilder<List<Map<String, dynamic>>>(
             future: MongoDatabaseBook().getData(),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -42,7 +44,7 @@ class _ShowBooksListState extends State<ShowBooksList> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => DisplayData(
-                                userId: snapshot.data[index].userId,
+                                userId: snapshot.data[index]["userId"],
                               ),
                             ),
                           );

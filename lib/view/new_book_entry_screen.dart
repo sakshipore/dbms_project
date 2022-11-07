@@ -96,127 +96,129 @@ class _NewBookEntryScreenState extends State<NewBookEntryScreen> {
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : Form(
-              key: _formKey,
-              child: Padding(
-                padding: EdgeInsets.all(30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 100.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 25.w),
-                      child: Text(
-                        "New Book Item Entry",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 30.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
+          : SingleChildScrollView(
+            child: Form(
+                key: _formKey,
+                child: Padding(
+                  padding: EdgeInsets.all(30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 100.h,
                       ),
-                    ),
-                    SizedBox(
-                      height: 50.h,
-                    ),
-                    TextFormField(
-                      controller: nameController,
-                      decoration: InputDecoration(
-                        labelText: "Name",
-                        hintText: "Enter Book Name",
-                      ),
-                      validator: ((value) {
-                        if (value!.isEmpty) {
-                          return "Please enter book name";
-                        }
-                        return null;
-                      }),
-                    ),
-                    TextFormField(
-                      controller: authorController,
-                      decoration: InputDecoration(
-                        labelText: "Author",
-                        hintText: "Enter Author Name",
-                      ),
-                      validator: ((value) {
-                        if (value!.isEmpty) {
-                          return "Please enter Author name";
-                        }
-                        return null;
-                      }),
-                    ),
-                    TextFormField(
-                      controller: editionController,
-                      decoration: InputDecoration(
-                        labelText: "Edition",
-                        hintText: "Enter Edition",
-                      ),
-                      validator: ((value) {
-                        if (value!.isEmpty) {
-                          return "Please enter Edition";
-                        }
-                        return null;
-                      }),
-                    ),
-                    TextFormField(
-                      controller: publicationController,
-                      decoration: InputDecoration(
-                        labelText: "Publication",
-                        hintText: "Enter Publication",
-                      ),
-                      validator: ((value) {
-                        if (value!.isEmpty) {
-                          return "Please enter Publication";
-                        }
-                        return null;
-                      }),
-                    ),
-                    TextFormField(
-                      controller: costController,
-                      decoration: InputDecoration(
-                        labelText: "Cost",
-                        hintText: "Enter Cost",
-                      ),
-                      validator: ((value) {
-                        if (value!.isEmpty) {
-                          return "Please enter Cost";
-                        }
-                        return null;
-                      }),
-                    ),
-                    SizedBox(
-                      height: 100.h,
-                    ),
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          await _insertData(
-                            nameController.text,
-                            authorController.text,
-                            costController.text,
-                            editionController.text,
-                            publicationController.text,
-                          );
-                          await _updateData(_id);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  HomeScreen(userId: widget.userId),
-                            ),
-                          );
-                        },
+                      Padding(
+                        padding: EdgeInsets.only(left: 25.w),
                         child: Text(
-                          "Add Book Product",
+                          "New Book Item Entry",
                           textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 30.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        height: 50.h,
+                      ),
+                      TextFormField(
+                        controller: nameController,
+                        decoration: InputDecoration(
+                          labelText: "Name",
+                          hintText: "Enter Book Name",
+                        ),
+                        validator: ((value) {
+                          if (value!.isEmpty) {
+                            return "Please enter book name";
+                          }
+                          return null;
+                        }),
+                      ),
+                      TextFormField(
+                        controller: authorController,
+                        decoration: InputDecoration(
+                          labelText: "Author",
+                          hintText: "Enter Author Name",
+                        ),
+                        validator: ((value) {
+                          if (value!.isEmpty) {
+                            return "Please enter Author name";
+                          }
+                          return null;
+                        }),
+                      ),
+                      TextFormField(
+                        controller: editionController,
+                        decoration: InputDecoration(
+                          labelText: "Edition",
+                          hintText: "Enter Edition",
+                        ),
+                        validator: ((value) {
+                          if (value!.isEmpty) {
+                            return "Please enter Edition";
+                          }
+                          return null;
+                        }),
+                      ),
+                      TextFormField(
+                        controller: publicationController,
+                        decoration: InputDecoration(
+                          labelText: "Publication",
+                          hintText: "Enter Publication",
+                        ),
+                        validator: ((value) {
+                          if (value!.isEmpty) {
+                            return "Please enter Publication";
+                          }
+                          return null;
+                        }),
+                      ),
+                      TextFormField(
+                        controller: costController,
+                        decoration: InputDecoration(
+                          labelText: "Cost",
+                          hintText: "Enter Cost",
+                        ),
+                        validator: ((value) {
+                          if (value!.isEmpty) {
+                            return "Please enter Cost";
+                          }
+                          return null;
+                        }),
+                      ),
+                      SizedBox(
+                        height: 100.h,
+                      ),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            await _insertData(
+                              nameController.text,
+                              authorController.text,
+                              costController.text,
+                              editionController.text,
+                              publicationController.text,
+                            );
+                            await _updateData(_id);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    HomeScreen(userId: widget.userId),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "Add Book Product",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
+          ),
     );
   }
 }

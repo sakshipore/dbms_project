@@ -83,85 +83,87 @@ class _NewStationaryScreenState extends State<NewStationaryScreen> {
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : Form(
-              key: _formKey,
-              child: Padding(
-                padding: EdgeInsets.all(30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 100.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10.w),
-                      child: Text(
-                        "New Stationary Item Entry",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 30.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
+          : SingleChildScrollView(
+            child: Form(
+                key: _formKey,
+                child: Padding(
+                  padding: EdgeInsets.all(30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 100.h,
                       ),
-                    ),
-                    SizedBox(
-                      height: 50.h,
-                    ),
-                    TextFormField(
-                      controller: itemController,
-                      decoration: InputDecoration(
-                        labelText: "Item",
-                        hintText: "Enter your Item",
-                      ),
-                      validator: ((value) {
-                        if (value!.isEmpty) {
-                          return "Please enter Item";
-                        }
-                        return null;
-                      }),
-                    ),
-                    TextFormField(
-                      controller: costController,
-                      decoration: InputDecoration(
-                        labelText: "Cost",
-                        hintText: "Enter your Cost",
-                      ),
-                      validator: ((value) {
-                        if (value!.isEmpty) {
-                          return "Please enter Cost";
-                        }
-                        return null;
-                      }),
-                    ),
-                    SizedBox(
-                      height: 100.h,
-                    ),
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          await _insertData(
-                            itemController.text,
-                            costController.text,
-                          );
-                          await _updateData(_id);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) =>
-                                  HomeScreen(userId: widget.userId)),
-                            ),
-                          );
-                        },
+                      Padding(
+                        padding: EdgeInsets.only(left: 10.w),
                         child: Text(
-                          "Add Stationary Product",
+                          "New Stationary Item Entry",
                           textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 30.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        height: 50.h,
+                      ),
+                      TextFormField(
+                        controller: itemController,
+                        decoration: InputDecoration(
+                          labelText: "Item",
+                          hintText: "Enter your Item",
+                        ),
+                        validator: ((value) {
+                          if (value!.isEmpty) {
+                            return "Please enter Item";
+                          }
+                          return null;
+                        }),
+                      ),
+                      TextFormField(
+                        controller: costController,
+                        decoration: InputDecoration(
+                          labelText: "Cost",
+                          hintText: "Enter your Cost",
+                        ),
+                        validator: ((value) {
+                          if (value!.isEmpty) {
+                            return "Please enter Cost";
+                          }
+                          return null;
+                        }),
+                      ),
+                      SizedBox(
+                        height: 100.h,
+                      ),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            await _insertData(
+                              itemController.text,
+                              costController.text,
+                            );
+                            await _updateData(_id);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) =>
+                                    HomeScreen(userId: widget.userId)),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "Add Stationary Product",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
+          ),
     );
   }
 }
